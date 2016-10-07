@@ -1,0 +1,32 @@
+[
+    {
+        "word" : "我",
+        "translations" : {
+            "A" : "I",
+            "B" : "You",
+            "C" : "He"
+        },
+        "answer" : "A",
+        "img" : "https://s3.amazonaws.com/chingoaldemo/images/me.jpg"
+    },
+    {
+        "word" : "中文",
+        "translations" : {
+            "A" : "Chinese",
+            "B" : "English",
+            "C" : "Spanish"
+        },
+        "answer" : "A",
+        "img" : "https://s3.amazonaws.com/chingoaldemo/images/chinese.png"
+    },
+    {
+        "word" : "学习",
+        "translations" : {
+            "A" : "Learn",
+            "B" : "Teach",
+            "C" : "Play"
+        },
+        "answer" : "A",
+        "img" : "https://s3.amazonaws.com/chingoaldemo/images/learn.jpeg"
+    }
+]
