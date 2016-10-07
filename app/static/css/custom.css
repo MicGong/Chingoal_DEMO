@@ -189,10 +189,60 @@ hr.small {
     margin: 20px;
 }
 
+/* visualizers */
+.visualizer-canvas {
+    width: 600px;
+    height: 200px;
+    background-color: #000;
+}
+
+.visualizer-container {
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+.visualizer-btn {
+    padding-top: 80px;
+}
+
 /* About */
 
 .about {
     padding: 50px 0;
+}
+
+/* reading */
+.word-mc {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.word-mc-container {
+    width: 700px;
+    margin: auto;
+}
+
+.word-mc-img {
+    width: 140px;
+    height: 140px;
+}
+
+.word-mc-img-container {
+    padding-top: 15px;
+    padding-left: 15px;
+}
+
+.word-mc-question {
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+.word-mc-options {
+    padding-left: 30px;
+}
+
+.word-mc-result {
+    padding-top: 70px;
 }
 
 /* Services */
@@ -217,6 +267,16 @@ hr.small {
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
+}
+
+/* intro */
+.intro {
+    padding: 50px 0;
+}
+
+.vertical-center {
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 /* Portfolio */
@@ -248,11 +308,21 @@ hr.small {
     background: url(../img/writing-word1-sml.png);
 }
 
+#writing-demo-text {
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+
 .result-canvas {
     width: 85px;
     height: 85px;
     display: block;
     background: url(../img/word-blank.png);
+}
+
+#result-container {
+    padding-left: 60px;
+    padding-top: 20px;
 }
 
 /* Call to Action */
