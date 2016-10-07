@@ -21,6 +21,9 @@
     <link href="static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
+    <!-- jQuery -->
+    <script src="js/vendor/jquery.js"></script>
+
     <!-- Angular -->
     <script src="js/vendor/angular.min.js" type="text/javascript"></script>
 
@@ -48,13 +51,13 @@
                 <a href="#top" onclick=$("#menu-close").click();>Home</a>
             </li>
             <li>
-                <a href="#services" onclick=$("#menu-close").click();>Read</a>
+                <a href="#services" onclick=$("#menu-close").click();>Write</a>
             </li>
             <li>
                 <a href="#portfolio" onclick=$("#menu-close").click();>Speak</a>
             </li>
             <li>
-                <a href="#about" onclick=$("#menu-close").click();>Write</a>
+                <a href="#about" onclick=$("#menu-close").click();>Read</a>
             </li>
             <li>
                 <a href="#contact" onclick=$("#menu-close").click();>Info</a>
@@ -72,11 +75,97 @@
         </div>
     </header>
 
+    <section id="intro" class="intro bg-diff">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center text-vertical-center">
+                    <h3>There are three different modules in Chingoal.</h3>
+                    <div class="col-md-4">
+                        <div class="service-item">
+                            <span class="fa-stack fa-4x">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-pencil-square-o fa-stack-1x text-danger"></i>
+                        </span>
+                            <h4>
+                                <strong>Writing</strong>
+                            </h4>
+                            <p>Writing: Mock the word with mouse.</p>
+                            <a href="#services" class="btn btn-dark">Start to learn</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="service-item">
+                            <span class="fa-stack fa-4x">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-headphones fa-stack-1x text-danger"></i>
+                        </span>
+                            <h4>
+                                <strong>Listening &amp; Speaking</strong>
+                            </h4>
+                            <p>Listening &amp; Speaking: Listen and repeat.</p>
+                            <a href="#portfolio" class="btn btn-dark">Start to learn</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="service-item">
+                            <span class="fa-stack fa-4x">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-book fa-stack-1x text-danger"></i>
+                        </span>
+                            <h4>
+                                <strong>Reading</strong>
+                            </h4>
+                            <p>Reading: Read the word and translate.</p>
+                            <a href="#about" class="btn btn-dark">Start to learn</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Read ==> services -->
     <section id="services" class="services">
         <div class="container">
             <div class="row">
-                
+                <div class="row">
+                    <div class="col-lg-12 text-center instruction">
+                        <h1><strong>Writing</strong></h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 text-center instruction">
+                        <h2>Mock the word below with mouse</h2>
+                    </div>
+                </div>
+                <div class="row" ng-controller="drawingController">
+                    <div class="col-md-6">
+                        <canvas id="draw-board" drawing></canvas>
+                        <div class="row ops">
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-2 text-center"><i class="btn btn-lg btn-font-light fa fa-arrow-left fa-2x" ng-click="prevClicked()"></i></div>
+                            <div class="col-lg-2 text-center"><i class=" btn btn-lg btn-font-light fa fa-repeat fa-2x" ng-click="resetClicked()"></i></div>
+                            <div class="col-lg-2 text-center">
+                                <i ng-class="mode ? 'fa-eraser' : 'fa-pencil'" class="btn btn-lg btn-font-light fa fa-2x" ng-click="toggleMode()"></i>
+                            </div>
+                            <div class="col-lg-2 text-center"><i class="btn btn-lg btn-font-light fa fa-floppy-o fa-2x" ng-click="saveClicked()"></i></div>
+                            <div class="col-lg-2 text-center"><i class="btn btn-lg btn-font-light fa fa-arrow-right fa-2x" ng-click="nextClicked()"></i></div>
+                            <div class="col-lg-1"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row text-center" id="writing-demo-text">
+                            <h3>Now try to make some scratch on the left,<br>and see how you did</h3>
+                        </div>
+                        <div class="row" id="result-container">
+                            <!-- <div class="col-md-2" ng-repeat="i in getImageNumber() track by $index"></div> -->
+                            <div class="col-md-2 result-canvas-container" ng-repeat="userDrawing in userDrawings track by $index">
+                                <canvas class="result-canvas"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
             </div>
         </div>
         <!-- /.container -->
@@ -86,8 +175,23 @@
     <section id="portfolio" class="portfolio bg-diff">
         <div class="container">
             <div class="row">
-                
+                <div class="col-lg-12 text-center instruction">
+                    <h1><strong>Listening and Speaking</strong></h1>
+                </div>
             </div>
+            <div class="row">
+                <div class="col-lg-12 text-center instruction">
+                    <h2>Listen and repeat the word</h2>
+                </div>
+            </div>
+            <recorder-wrapper>
+                <div class="row text-center"><h3>Please listen to the following word first</h3></div>
+                <visualizer audio-url="'https://s3.amazonaws.com/chingoaldemo/audio/Imagine+Dragons+-+I+Bet+My+Life.mp3'"></visualizer>
+                <div class="row text-center"><h3>Now try to repeat the word, click the mircophone to record when you are ready</h3></div>
+                <recorder></recorder>
+                <div class="row text-center"><h3>What did you just say?</h3></div>
+                <visualizer-user-result></visualizer-user-result>    
+            </recorder-wrapper>
             <!-- /.row -->
         </div>
         <!-- /.container -->
@@ -98,49 +202,28 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center instruction">
-                    <h1>Mock the word below with mouse</h1>
+                    <h1><strong>Reading</strong></h1>
                 </div>
             </div>
-            <div class="row" ng-controller="drawingController">
-                <div class="col-md-6">
-                    <canvas id="draw-board" drawing></canvas>
-                    <div class="row ops">
-                        <div class="col-lg-1"></div>
-                        <div class="col-lg-2 text-center" ng-click="prevClicked()"><i class="btn btn-dark btn-lg btn-font-light fa fa-arrow-left fa-2x"></i></div>
-                        <div class="col-lg-2 text-center" ng-click="resetClicked()"><i class=" btn btn-dark btn-lg btn-font-light fa fa-repeat fa-2x"></i></div>
-                        <div class="col-lg-2 text-center" ng-click="toggleMode()">
-                            <i ng-class="mode ? 'fa-eraser' : 'fa-pencil'" class="btn btn-dark btn-lg btn-font-light fa fa-2x"></i>
-                        </div>
-                        <div class="col-lg-2 text-center" ng-click="saveClicked()"><i class="btn btn-dark btn-lg btn-font-light fa fa-floppy-o fa-2x"></i></div>
-                        <div class="col-lg-2 text-center" ng-click="nextClicked()"><i class="btn btn-dark btn-lg btn-font-light fa fa-arrow-right fa-2x"></i></div>
-                        <div class="col-lg-1"></div>
-                    </div>
+            <div class="row">
+                <div class="col-lg-12 text-center instruction">
+                    <h1>Choose from one of the following translations</h1>
                 </div>
-                <div class="col-md-6">
-                    <div class="row" id="writing-demo-vid-container">
-                        <video id="writing-demo-vid" src=""></video>
-                    </div>
-                    <div class="row" id="result-container">
-                        <!-- <div class="col-md-2" ng-repeat="i in getImageNumber() track by $index"></div> -->
-                        <div class="col-md-2 result-canvas-container" ng-repeat="userDrawing in userDrawings track by $index">
-                            <canvas class="result-canvas"></canvas>
-                        </div>
-                    </div>
-                </div>
-                
             </div>
+            <reading></reading>
             <!-- /.row -->
         </div>
         <!-- /.container -->
     </section>
 
     <!-- Info ==> contact -->
-    <section id="contact" class="map bg-diff">
+    <section id="contact" class="contact bg-diff">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Stylish Portfolio is the perfect theme for your next project!</h2>
-                    <p class="lead">This theme features some wonderful photography courtesy of <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a>.</p>
+                    <h2>Background</h2>
+                    <p class="lead">Orignial Chingoal application is accidently shut down, so I make this demo page. <br>
+                    For more infomation, please check my <a href="https://bitbucket.org/jgong1">bitbucket</a>.</p>
                 </div>
             </div>
             <!-- /.row -->
@@ -153,13 +236,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h4><strong>Start Bootstrap</strong>
-                    </h4>
-                    <p>3481 Melrose Place
-                        <br>Beverly Hills, CA 90210</p>
+                    <h4><strong>ChingoalDemo_Jian Gong</strong></h4>
+                    <p>Carnegie Mellon University
+                        <br>Pittsburgh, PA 15213</p>
                     <ul class="list-unstyled">
-                        <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
-                        <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:name@example.com">name@example.com</a>
+                        <li><i class="fa fa-phone fa-fw"></i> (412) 951-0192</li>
+                        <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:name@example.com">michaelgongjian@gmail.com</a>
                         </li>
                     </ul>
                     <br>
@@ -175,15 +257,12 @@
                         </li>
                     </ul>
                     <hr class="small">
-                    <p class="text-muted">Copyright &copy; Your Website 2014</p>
+                    <p class="text-muted">Copyright &copy; Jian Gong 2016</p>
                 </div>
             </div>
         </div>
         <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
     </footer>
-
-    <!-- jQuery -->
-    <script src="js/vendor/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/vendor/bootstrap.min.js"></script>
@@ -196,9 +275,18 @@
     
     <!-- Directive -->
     <script src="js/directives/drawing.js" type="text/javascript"></script>
+    <script src="js/directives/recorder.js" type="text/javascript"></script>
+    <script src="js/directives/visualizer.js" type="text/javascript"></script>
+    <script src="js/directives/visualizerUserResult.js" type="text/javascript"></script>
+    <script src="js/directives/recorderWrapper.js" type="text/javascript"></script>
+    <script src="js/directives/reading.js" type="text/javascript"></script>
 
-    <!-- Directive -->
+    <!-- Controllers -->
     <script src="js/controllers/drawingController.js" type="text/javascript"></script>
+
+    <!-- Services -->
+    <script src="js/services/readingService.js" type="text/javascript"></script>
+
 
 </body>
 
