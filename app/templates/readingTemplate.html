@@ -1,0 +1,36 @@
+<div class="row word-mc-container">
+    <div class="row word-mc">
+        <div class="col-lg-3 word-mc-img-container">
+            <img class="word-mc-img" ng-src="{{word.img}}" />
+        </div>
+        <div class="col-lg-7">
+            <div class="row word-mc-question">
+                <h3>Please select translation for {{word.word}}</h3>
+            </div>
+            <div class="row word-mc-options">
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="optionsRadiosInline"  id="firstChoice">
+                        {{word.translations.A}}
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="optionsRadiosInline" id="secondChoice">
+                        {{word.translations.B}}
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="optionsRadiosInline" id="thirdChoice">
+                        {{word.translations.C}}
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 word-mc-result">
+            <btn><i class="fa fa-question-circle fa-2x"></i></btn>
+        </div>
+    </div>
+    
+</div>
