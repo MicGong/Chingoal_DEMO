@@ -1,4 +1,4 @@
-# README #
+# Chingoal Demo #
 
 Demonstration single page web application Chingoal.
 
